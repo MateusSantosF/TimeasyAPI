@@ -1,6 +1,4 @@
 
-using timeasy_api.src.modules.institute.Repository;
-using timeasy_api.src.modules.user.Repository;
 using timeasy_api.src.Repository;
 
 namespace timeasy_api.src.Modules.user.UseCases.Create;

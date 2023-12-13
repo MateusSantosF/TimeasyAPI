@@ -1,10 +1,5 @@
-﻿using timeasy_api.src.modules.course.Repository;
-using timeasy_api.src.modules.teacher.Repository;
-using timeasy_api.src.modules.timetable.Repository;
-using timeasy_api.src.modules.user.Repository;
-using timeasy_api.src.Modules.interval.Repository;
-
-namespace timeasy_api.src.modules.institute.Repository;
+﻿
+namespace timeasy_api.src.core.entities;
 
 public class Institute : BaseEntity
 {

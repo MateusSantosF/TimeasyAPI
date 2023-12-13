@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace timeasy_api.src.Core.Entities;
+namespace timeasy_api.src.core.entities;
 
 public abstract class BaseEntity
 {

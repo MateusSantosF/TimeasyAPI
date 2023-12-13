@@ -1,5 +1,4 @@
 
-using timeasy_api.src.modules.roomType;
 using timeasy_api.src.Repository;
 
 namespace timeasy_api.src.Modules.roomtype.UseCases.Update;

@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using timeasy_api.src.Modules.interval.Repository;
 
 namespace timeasy_api.src.Contexts.Mappings;
 

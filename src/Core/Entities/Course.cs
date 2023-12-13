@@ -1,10 +1,6 @@
-﻿using timeasy_api.src.modules.coursesubject.Repository;
-using timeasy_api.src.modules.institute.Repository;
-using timeasy_api.src.modules.subject.Repository;
-using timeasy_api.src.modules.timetable.Repository;
-using TimeasyAPI.src.Models.ValueObjects.Enums;
+﻿using TimeasyAPI.src.Models.ValueObjects.Enums;
 
-namespace timeasy_api.src.modules.course.Repository;
+namespace timeasy_api.src.core.entities;
 public class Course : BaseEntity
 {
     public string Name { get; set; }

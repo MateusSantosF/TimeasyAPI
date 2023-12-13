@@ -1,6 +1,5 @@
-﻿using timeasy_api.src.modules.institute.Repository;
-
-namespace timeasy_api.src.modules.user.Repository;
+﻿
+namespace timeasy_api.src.core.entities;
 public class User : BaseEntity
 {
     public string FullName { get; set; }

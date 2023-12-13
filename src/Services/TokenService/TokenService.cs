@@ -5,7 +5,6 @@ using System.Text;
 using TimeasyAPI.src.Services.Interfaces;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
-using timeasy_api.src.modules.user.Repository;
 using timeasy_api.src.Core;
 
 namespace TimeasyAPI.src.Services

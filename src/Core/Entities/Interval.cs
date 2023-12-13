@@ -1,6 +1,5 @@
-﻿using timeasy_api.src.modules.institute.Repository;
-
-namespace timeasy_api.src.Modules.interval.Repository;
+﻿
+namespace timeasy_api.src.core.entities;
 public class Interval : BaseEntity
 {
     public string Start { get; set; }

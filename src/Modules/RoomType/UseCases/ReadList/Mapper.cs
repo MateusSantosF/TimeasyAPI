@@ -1,7 +1,6 @@
 
 
 using timeasy_api.src.Core.Pagination;
-using timeasy_api.src.modules.roomType;
 
 namespace timeasy_api.src.Modules.roomtype.UseCases.ReadList;
 

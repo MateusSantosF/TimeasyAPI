@@ -1,7 +1,5 @@
-﻿using timeasy_api.src.modules.room.Repository;
-using timeasy_api.src.modules.subject.Repository;
-
-namespace timeasy_api.src.modules.roomType;
+﻿
+namespace timeasy_api.src.core.entities;
 public class RoomType : BaseEntity
 {
     public string Name { get; set; }

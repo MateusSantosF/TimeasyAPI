@@ -1,7 +1,5 @@
-﻿using timeasy_api.src.modules.institute.Repository;
-using timeasy_api.src.modules.timetable.Repository;
-
-namespace timeasy_api.src.modules.teacher.Repository;
+﻿
+namespace timeasy_api.src.core.entities;
 
 public class Teacher : BaseEntity
 {

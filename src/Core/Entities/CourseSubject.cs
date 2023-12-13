@@ -1,8 +1,7 @@
 ﻿
-using timeasy_api.src.modules.course.Repository;
-using timeasy_api.src.modules.subject.Repository;
 
-namespace timeasy_api.src.modules.coursesubject.Repository;
+namespace timeasy_api.src.core.entities;
+
 public class CourseSubject
 {
     public Guid CourseId { get; set; }

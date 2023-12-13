@@ -1,9 +1,6 @@
-﻿using timeasy_api.src.modules.course.Repository;
-using timeasy_api.src.modules.coursesubject.Repository;
-using timeasy_api.src.modules.roomType;
-using timeasy_api.src.modules.timetable.Repository;
+﻿
 
-namespace timeasy_api.src.modules.subject.Repository;
+namespace timeasy_api.src.core.entities;
 public class Subject : BaseEntity
 {
     public string Acronym { get; set; }

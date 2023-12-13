@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using timeasy_api.src.modules.roomType;
 
 namespace timeasy_api.src.Contexts.Mappings;
 

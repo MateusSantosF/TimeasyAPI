@@ -1,7 +1,5 @@
 
 using System.Globalization;
-using timeasy_api.src.modules.institute.Repository;
-using timeasy_api.src.modules.user.Repository;
 
 namespace timeasy_api.src.Modules.user.UseCases.Create;
 
