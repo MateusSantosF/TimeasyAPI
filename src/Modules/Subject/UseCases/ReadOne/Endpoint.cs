@@ -9,7 +9,7 @@ public class Endpoint : Endpoint<Request, Response, Mapper>
 
     public override void Configure()
     {
-        Put("subjects");
+        Get("subjects/{Id}");
         AllowAnonymous();
     }
 

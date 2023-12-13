@@ -1,10 +1,18 @@
 
 
 
-namespace timeasy_api.src.Modules.subject.UseCases.ReadOne;
+namespace timeasy_api.src.Modules.subject.UseCases.Update;
 
 public class Mapper : Mapper<Request, Response, Subject>
 {
+    public override Subject ToEntity(Request r) => new()
+    {
+        Id = r.Id,
+        Name = r.Name,
+        Acronym = r.Acronym,
+        Complexity = r.Complexity.GetEnumFromString<SubjectComplexity>(),
+        RoomTypeId = r.RoomTypeId,
+    };
 
 
     public override Response FromEntity(Subject e) => new()
