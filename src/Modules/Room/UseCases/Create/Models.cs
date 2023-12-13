@@ -4,7 +4,7 @@ namespace timeasy_api.src.Modules.room.UseCases.Create;
 public class Request
 {
     public string Name { get; set; }
-    public string Block { get; set; }
+    public string? Block { get; set; }
     public int Capacity { get; set; }
     public Guid RoomTypeId { get; set; }
 
@@ -32,7 +32,7 @@ public class Response
 {
     public Guid Id { get; set; }
     public string Name { get; set; }
-    public string Block { get; set; }
+    public string? Block { get; set; }
     public int Capacity { get; set; }
     public Guid RoomTypeId { get; set; }
 }

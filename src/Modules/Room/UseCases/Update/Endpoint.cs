@@ -18,8 +18,15 @@ public class Endpoint : Endpoint<Request, Response, Mapper>
 
         try
         {
-            var newRoom = Map.ToEntity(req);
-            var result = await Repository.Update(newRoom);
+            var targetRoom = await Repository.FindAsync(rt => rt.Id.Equals(req.Id));
+            if (targetRoom is null)
+            {
+                await SendNotFoundAsync(ct);
+                return;
+            }
+
+            var updatedRoom = Map.ToEntity(req);
+            var result = await Repository.Update(updatedRoom);
             await SendOkAsync(Map.FromEntity(result), ct);
         }
         catch (Exception ex)
