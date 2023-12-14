@@ -3,12 +3,20 @@ using FastEndpoints.Swagger;
 using timeasy_api.src.Contexts;
 using timeasy_api.src.Core;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
+using NSwag;
 
 var builder = WebApplication.CreateBuilder();
+
+
+var secretJwtKey = builder.Configuration.GetSection("AppSettings:TokenConfiguration:SecretJwtKey").Value ?? throw new Exception("JWTSecret not found."); ;
+
 builder.Services.AddFastEndpoints()
-   .AddJWTBearerAuth("TokenSigningKey")
+   .AddJWTBearerAuth(secretJwtKey)
    .AddAuthorization();
 
+
+builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
 builder.Services.RegisterDependencies();
 
 builder.Services.SwaggerDocument(o =>
@@ -21,8 +29,6 @@ builder.Services.SwaggerDocument(o =>
     };
 });
 
-var appSettings = new AppSettings();
-builder.Configuration.GetSection("AppSettings").Bind(appSettings);
 
 
 var connectionString = builder.Configuration.GetConnectionString(nameof(TimeasyDbContext)) ?? throw new Exception("Database ConnectionString not found.");
@@ -33,7 +39,7 @@ builder.Services.AddDbContext<TimeasyDbContext>(options =>
 
 var app = builder.Build();
 
-app.UseFastEndpoints()
+app.UseFastEndpoints(c => c.Serializer.Options.ReferenceHandler = ReferenceHandler.IgnoreCycles)
     .UseAuthentication()
     .UseAuthorization();
 
