@@ -19,7 +19,7 @@ public class Endpoint : Endpoint<Request, PagedResult<Response>, Mapper>
 
         try
         {
-            var targetSubject = await Repository.GetAllAsync(req.Page, req.PageSize);
+            var targetSubject = await Repository.GetPagedAsync(req.Page, req.PageSize);
 
             await SendOkAsync(Map.FromEntity(targetSubject), ct);
         }

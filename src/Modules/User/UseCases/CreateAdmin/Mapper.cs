@@ -15,8 +15,8 @@ public class Mapper : Mapper<Request, Response, User>
     public Institute ToInstituteEntity(Request r) => new()
     {
         Name = r.InstituteName,
-        OpenHour = TimeSpan.ParseExact(r.OpenHour, "hh\\:mm", CultureInfo.InvariantCulture),
-        CloseHour = TimeSpan.ParseExact(r.CloseHour, "hh\\:mm", CultureInfo.InvariantCulture),
+        OpenHour = r.OpenHour.ToTimeSpan(),
+        CloseHour = r.CloseHour.ToTimeSpan(),
         Monday = r.Monday,
         Tuesday = r.Tuesday,
         Wednesday = r.Wednesday,

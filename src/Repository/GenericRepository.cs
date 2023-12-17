@@ -40,9 +40,9 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
 
     }
 
-    public async Task<PagedResult<T>> GetAllAsync(int page, int pageSize, Expression<Func<T, bool>>? searchCondition = null)
+    public async Task<PagedResult<T>> GetPagedAsync(int page, int pageSize, Expression<Func<T, bool>>? searchCondition = null)
     {
-        IQueryable<T> query = _entitie.Where(e => e.Active == true);
+        IQueryable<T> query = _entitie.AsNoTracking().Where(e => e.Active == true);
 
         if (searchCondition != null)
         {
@@ -52,16 +52,16 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
         return await query.GetPagedAsync(page, pageSize);
     }
 
-    public async Task<PagedResult<T>> GetAllAsync(int page, int pageSize)
+    public async Task<PagedResult<T>> GetPagedAsync(int page, int pageSize)
     {
-        IQueryable<T> query = _entitie.Where(e => e.Active == true);
+        IQueryable<T> query = _entitie.AsNoTracking().Where(e => e.Active == true);
 
         return await query.GetPagedAsync(page, pageSize);
     }
 
     public async Task<List<T>> GetAllAsync()
     {
-        return await _entitie.Where(e => e.Active == true).ToListAsync();
+        return await _entitie.AsNoTracking().Where(e => e.Active == true).ToListAsync();
     }
 
     public async Task<T?> GetByIdAsync(Guid id)
@@ -82,4 +82,9 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
         return entity;
     }
 
+    public async Task<List<T>> GetAllAsync(Expression<Func<T, bool>> searchCondition)
+    {
+        IQueryable<T> query = _entitie.Where(e => e.Active == true);
+        return await query.AsNoTracking().Where(searchCondition).ToListAsync();
+    }
 }
