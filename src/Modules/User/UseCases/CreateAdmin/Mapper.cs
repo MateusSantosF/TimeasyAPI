@@ -1,6 +1,4 @@
 
-using System.Globalization;
-
 namespace timeasy_api.src.Modules.user.UseCases.Create;
 
 public class Mapper : Mapper<Request, Response, User>

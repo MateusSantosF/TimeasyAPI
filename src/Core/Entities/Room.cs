@@ -11,5 +11,7 @@ public class Room : BaseEntity
 
     // EF Relations
     public virtual List<Timetable> Timetables { get; set; }
+    public Guid InstituteId { get; set; }
+    public virtual Institute Institute { get; set; }
 
 }

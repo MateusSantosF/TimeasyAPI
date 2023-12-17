@@ -12,11 +12,14 @@ public class Subject : BaseEntity
     //EF Relations
     public virtual List<CourseSubject> CourseSubject { get; set; }
     public virtual List<TimetableSubjects> TimetableSubjects { get; set; }
+    public Guid InstituteId { get; set; }
+    public virtual Institute Institute { get; set; }
 
 }
 
 public class TimetableSubjects
 {
+    public Guid Id { get; set; }
     public Guid CourseId { get; set; }
     public Guid TimetableId { get; set; }
     public Guid SubjectId { get; set; }

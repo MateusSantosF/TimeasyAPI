@@ -10,7 +10,8 @@ public class Mapper : Mapper<Request, Response, Room>
         Name = r.Name,
         Capacity = r.Capacity,
         RoomTypeId = r.RoomTypeId,
-        Block = r.Block
+        Block = r.Block,
+        InstituteId = r.InstituteId,
     };
 
 

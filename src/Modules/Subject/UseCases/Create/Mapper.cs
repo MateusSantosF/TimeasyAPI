@@ -11,6 +11,7 @@ public class Mapper : Mapper<Request, Response, Subject>
         Acronym = r.Acronym,
         Complexity = r.Complexity.GetEnumFromString<SubjectComplexity>(),
         RoomTypeId = r.RoomTypeId,
+        InstituteId = r.InstituteId
     };
 
 

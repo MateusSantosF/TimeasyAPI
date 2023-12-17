@@ -17,7 +17,5 @@ public class CourseSubjectConfiguration : IEntityTypeConfiguration<CourseSubject
            .HasOne(s => s.Course)
            .WithMany(tc => tc.CourseSubject)
            .HasForeignKey(s => s.CourseId);
-
-
     }
 }

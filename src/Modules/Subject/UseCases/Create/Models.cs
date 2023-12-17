@@ -8,6 +8,9 @@ public class Request
     public string Complexity { get; set; }
     public Guid RoomTypeId { get; set; }
 
+    [FromClaim("InstituteId", isRequired: true)]
+    public Guid InstituteId { get; set; }
+
 }
 public class Validator : Validator<Request>
 {
@@ -18,7 +21,7 @@ public class Validator : Validator<Request>
             .MinimumLength(3).WithMessage("Informe o nome da sala completo.");
 
         RuleFor(x => x.Acronym)
-            .MaximumLength(7).WithMessage("Sigla muito grande! O tamanho máximo é 7 caracteres")
+            .MaximumLength(10).WithMessage("Sigla muito grande! O tamanho máximo é 10 caracteres")
             .NotEmpty().WithMessage("O parametro Sigla é Obrigatório.");
 
         RuleFor(x => x.RoomTypeId)

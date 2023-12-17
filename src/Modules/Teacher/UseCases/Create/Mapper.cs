@@ -9,7 +9,7 @@ public class Mapper : Mapper<Request, Response, Teacher>
     {
         FullName = r.FullName,
         Email = r.Email,
-        Registration = r.Registration,
+        Registration = r.Registration.ToUpper(),
         InstituteId = r.InstituteId
     };
 

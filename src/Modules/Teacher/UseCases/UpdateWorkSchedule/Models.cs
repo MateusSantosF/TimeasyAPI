@@ -1,6 +1,3 @@
-
-
-
 namespace timeasy_api.src.Modules.teacher.UseCases.UpdateWorkSchedule;
 public class Request
 {

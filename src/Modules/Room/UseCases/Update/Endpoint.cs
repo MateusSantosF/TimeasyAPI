@@ -26,6 +26,7 @@ public class Endpoint : Endpoint<Request, Response, Mapper>
             }
 
             var updatedRoom = Map.ToEntity(req);
+            updatedRoom.InstituteId = targetRoom.InstituteId;
             var result = await Repository.Update(updatedRoom);
             await SendOkAsync(Map.FromEntity(result), ct);
         }

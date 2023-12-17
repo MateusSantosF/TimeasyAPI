@@ -10,7 +10,6 @@ public class Endpoint : Endpoint<Request, Response, Mapper>
     public override void Configure()
     {
         Post("rooms");
-        AllowAnonymous();
     }
 
     public override async Task HandleAsync(Request req, CancellationToken ct)

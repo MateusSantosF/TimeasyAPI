@@ -8,6 +8,8 @@ public class Request
     public int Capacity { get; set; }
     public Guid RoomTypeId { get; set; }
 
+    [FromClaim("InstituteId", isRequired: true)]
+    public Guid InstituteId { get; set; }
 
 }
 public class Validator : Validator<Request>
@@ -19,7 +21,7 @@ public class Validator : Validator<Request>
             .MinimumLength(3).WithMessage("Informe o nome da sala completo.");
 
         RuleFor(x => x.Capacity)
-            .NotEmpty().WithMessage("O parametro Capaciaade é Obrigatório.")
+            .NotEmpty().WithMessage("O parametro capacidade é Obrigatório.")
             .GreaterThan(1)
             .WithMessage("O valor mímino para a capacidade da sala é 1.");
 

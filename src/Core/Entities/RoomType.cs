@@ -9,4 +9,6 @@ public class RoomType : BaseEntity
     // EF Relations
     public ICollection<Subject> Subjects { get; set; }
     public ICollection<Room> Rooms { get; set; }
+    public Guid InstituteId { get; set; }
+    public virtual Institute Institute { get; set; }
 }

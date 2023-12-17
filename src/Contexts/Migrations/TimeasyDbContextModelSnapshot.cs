@@ -65,14 +65,16 @@ namespace timeasyapi.src.Contexts.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<uint>("Period")
-                        .HasColumnType("int unsigned");
+                    b.Property<string>("Period")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<int>("PeriodAmount")
                         .HasColumnType("int");
 
-                    b.Property<uint>("Turn")
-                        .HasColumnType("int unsigned");
+                    b.Property<string>("Turn")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
@@ -184,6 +186,9 @@ namespace timeasyapi.src.Contexts.Migrations
                     b.Property<int>("Capacity")
                         .HasColumnType("int");
 
+                    b.Property<Guid>("InstituteId")
+                        .HasColumnType("char(36)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("varchar(255)");
@@ -192,6 +197,8 @@ namespace timeasyapi.src.Contexts.Migrations
                         .HasColumnType("char(36)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("InstituteId");
 
                     b.HasIndex("Name")
                         .IsUnique();
@@ -210,6 +217,9 @@ namespace timeasyapi.src.Contexts.Migrations
                     b.Property<bool>("Active")
                         .HasColumnType("tinyint(1)");
 
+                    b.Property<Guid>("InstituteId")
+                        .HasColumnType("char(36)");
+
                     b.Property<bool>("IsComputerLab")
                         .HasColumnType("tinyint(1)");
 
@@ -217,10 +227,12 @@ namespace timeasyapi.src.Contexts.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<uint?>("OperationalSystem")
-                        .HasColumnType("int unsigned");
+                    b.Property<string>("OperationalSystem")
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("InstituteId");
 
                     b.ToTable("RoomType");
                 });
@@ -241,6 +253,9 @@ namespace timeasyapi.src.Contexts.Migrations
                     b.Property<uint>("Complexity")
                         .HasColumnType("int unsigned");
 
+                    b.Property<Guid>("InstituteId")
+                        .HasColumnType("char(36)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("varchar(255)");
@@ -249,6 +264,8 @@ namespace timeasyapi.src.Contexts.Migrations
                         .HasColumnType("char(36)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("InstituteId");
 
                     b.HasIndex("Name")
                         .IsUnique();
@@ -367,6 +384,9 @@ namespace timeasyapi.src.Contexts.Migrations
 
                     b.Property<int>("DividedCount")
                         .HasColumnType("int");
+
+                    b.Property<Guid>("Id")
+                        .HasColumnType("char(36)");
 
                     b.Property<bool>("IsDivided")
                         .HasColumnType("tinyint(1)");
@@ -515,22 +535,49 @@ namespace timeasyapi.src.Contexts.Migrations
 
             modelBuilder.Entity("timeasy_api.src.core.entities.Room", b =>
                 {
+                    b.HasOne("timeasy_api.src.core.entities.Institute", "Institute")
+                        .WithMany()
+                        .HasForeignKey("InstituteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("timeasy_api.src.core.entities.RoomType", "Type")
                         .WithMany("Rooms")
                         .HasForeignKey("RoomTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Institute");
+
                     b.Navigation("Type");
+                });
+
+            modelBuilder.Entity("timeasy_api.src.core.entities.RoomType", b =>
+                {
+                    b.HasOne("timeasy_api.src.core.entities.Institute", "Institute")
+                        .WithMany()
+                        .HasForeignKey("InstituteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Institute");
                 });
 
             modelBuilder.Entity("timeasy_api.src.core.entities.Subject", b =>
                 {
+                    b.HasOne("timeasy_api.src.core.entities.Institute", "Institute")
+                        .WithMany()
+                        .HasForeignKey("InstituteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("timeasy_api.src.core.entities.RoomType", "RoomType")
                         .WithMany("Subjects")
                         .HasForeignKey("RoomTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Institute");
 
                     b.Navigation("RoomType");
                 });

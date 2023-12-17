@@ -19,7 +19,7 @@ public class Validator : Validator<Request>
             .MinimumLength(3).WithMessage("Informe o nome da sala completo.");
 
         RuleFor(x => x.Acronym)
-            .MaximumLength(7).WithMessage("Sigla muito grande! O tamanho máximo é 7 caracteres")
+            .MaximumLength(10).WithMessage("Sigla muito grande! O tamanho máximo é 10 caracteres")
             .NotEmpty().WithMessage("O parametro Sigla é Obrigatório.");
 
         RuleFor(x => x.RoomTypeId)

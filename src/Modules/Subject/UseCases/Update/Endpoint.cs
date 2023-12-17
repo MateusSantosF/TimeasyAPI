@@ -27,7 +27,8 @@ public class Endpoint : Endpoint<Request, Response, Mapper>
             }
 
             var newSubject = Map.ToEntity(req);
-            var result = await Repository.CreateAsync(newSubject);
+            newSubject.InstituteId = targetSubject.InstituteId;
+            var result = await Repository.Update(newSubject);
             await SendOkAsync(Map.FromEntity(result), ct);
         }
         catch (Exception ex)

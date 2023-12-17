@@ -9,7 +9,7 @@ public class RoomTypeConfiguration : IEntityTypeConfiguration<RoomType>
     {
         builder.HasKey(rt => rt.Id);
 
-        builder.Property(rt => rt.OperationalSystem).IsRequired(false);
+        builder.Property(rt => rt.OperationalSystem).HasConversion<string>().IsRequired(false);
     }
 }
 

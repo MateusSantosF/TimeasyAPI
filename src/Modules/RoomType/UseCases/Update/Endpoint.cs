@@ -19,9 +19,14 @@ public class Endpoint : Endpoint<Request, Response, Mapper>
         try
         {
             var targetRoomType = await Repository.FindAsync(rt => rt.Id.Equals(req.Id));
-            if (targetRoomType is null) await SendNotFoundAsync(ct);
+            if (targetRoomType is null)
+            {
+                await SendNotFoundAsync(ct);
+                return;
+            }
 
             var roomType = Map.ToEntity(req);
+            roomType.InstituteId = targetRoomType.InstituteId;
             var result = await Repository.Update(roomType);
             await SendOkAsync(Map.FromEntity(result), ct);
         }

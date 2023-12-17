@@ -6,6 +6,8 @@ public class Request
     public string Name { get; set; }
     public bool IsComputerLab { get; set; }
     public string? OperationalSystem { get; set; }
+    [FromClaim("InstituteId", isRequired: true)]
+    public Guid InstituteId { get; set; }
 
 }
 public class Validator : Validator<Request>

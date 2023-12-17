@@ -1,4 +1,5 @@
 
+using System.Linq.Expressions;
 using timeasy_api.src.Core.Pagination;
 using timeasy_api.src.Repository;
 
@@ -19,7 +20,9 @@ public class Endpoint : Endpoint<Request, PagedResult<Response>, Mapper>
 
         try
         {
-            var targetSubject = await Repository.GetPagedAsync(req.Page, req.PageSize);
+            Expression<Func<Subject, bool>> query = course => course.InstituteId.Equals(req.InstituteId);
+
+            var targetSubject = await Repository.GetPagedAsync(req.Page, req.PageSize, query);
 
             await SendOkAsync(Map.FromEntity(targetSubject), ct);
         }

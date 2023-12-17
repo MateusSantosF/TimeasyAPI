@@ -7,7 +7,7 @@ public class Mapper : Mapper<Request, Response, Teacher>
         Id = r.Id,
         FullName = r.FullName,
         Email = r.Email,
-        Registration = r.Registration,
+        Registration = r.Registration.ToUpper(),
     };
 
 

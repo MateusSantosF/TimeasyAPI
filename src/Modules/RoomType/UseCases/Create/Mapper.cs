@@ -9,7 +9,8 @@ public class Mapper : Mapper<Request, Response, RoomType>
     {
         Name = r.Name,
         IsComputerLab = r.IsComputerLab,
-        OperationalSystem = r.OperationalSystem?.GetEnumFromString<OperationalSystem>()
+        OperationalSystem = r.OperationalSystem?.GetEnumFromString<OperationalSystem>(),
+        InstituteId = r.InstituteId,
     };
 
 

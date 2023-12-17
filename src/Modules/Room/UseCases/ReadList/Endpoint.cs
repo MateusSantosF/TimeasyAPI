@@ -1,4 +1,5 @@
 
+using System.Linq.Expressions;
 using timeasy_api.src.Core.Pagination;
 using timeasy_api.src.Repository;
 
@@ -11,7 +12,6 @@ public class Endpoint : Endpoint<Request, PagedResult<Response>, Mapper>
     public override void Configure()
     {
         Get("rooms");
-        AllowAnonymous();
     }
 
     public override async Task HandleAsync(Request req, CancellationToken ct)
@@ -19,7 +19,8 @@ public class Endpoint : Endpoint<Request, PagedResult<Response>, Mapper>
 
         try
         {
-            var result = await Repository.GetPagedAsync(req.Page, req.PageSize);
+            Expression<Func<Room, bool>> query = course => course.InstituteId.Equals(req.InstituteId);
+            var result = await Repository.GetPagedAsync(req.Page, req.PageSize, query);
 
             await SendOkAsync(Map.FromEntity(result), ct);
         }
