@@ -5,7 +5,7 @@ namespace timeasy_api.src.Modules.course.UseCases.ReadOne;
 
 public class Endpoint : Endpoint<Request, Response, Mapper>
 {
-    public IGenericRepository<Course> Repository { get; init; }
+    public ICourseRepository Repository { get; init; }
 
     public override void Configure()
     {
@@ -18,7 +18,7 @@ public class Endpoint : Endpoint<Request, Response, Mapper>
 
         try
         {
-            var targetCouse = await Repository.FindAsync(course => course.Id.Equals(req.Id));
+            var targetCouse = await Repository.GetAllWithSubjectsAsync(req.Id);
             if (targetCouse is null)
             {
                 await SendNotFoundAsync();

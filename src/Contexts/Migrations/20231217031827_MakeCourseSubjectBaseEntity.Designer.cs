@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using timeasy_api.src.Contexts;
 
@@ -10,9 +11,11 @@ using timeasy_api.src.Contexts;
 namespace timeasyapi.src.Contexts.Migrations
 {
     [DbContext(typeof(TimeasyDbContext))]
-    partial class TimeasyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231217031827_MakeCourseSubjectBaseEntity")]
+    partial class MakeCourseSubjectBaseEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

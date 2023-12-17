@@ -10,7 +10,6 @@ public class Mapper : Mapper<Request, Response, Teacher>
         Registration = r.Registration.ToUpper(),
     };
 
-
     public override Response FromEntity(Teacher e) => new()
     {
         Id = e.Id,

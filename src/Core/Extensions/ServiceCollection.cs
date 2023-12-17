@@ -9,6 +9,7 @@ public static class ServiceCollection
     {
 
         serviceCollection.AddScoped<ITokenService, TokenService>();
+        serviceCollection.AddScoped<ICourseRepository, CourseRepository>();
         serviceCollection.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
     }
 }
