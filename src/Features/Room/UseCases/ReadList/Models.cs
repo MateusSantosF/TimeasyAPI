@@ -9,6 +9,16 @@ public class Request : PagedRequest
     public Guid InstituteId { get; set; }
 }
 
+public class Validator : Validator<Request>
+{
+    public Validator()
+    {
+        RuleFor(x => x.Page)
+        .GreaterThanOrEqualTo(1).WithMessage("O número da página deve ser maior ou igual a 1");
+    }
+}
+
+
 public class Response
 {
     public Guid Id { get; set; }
