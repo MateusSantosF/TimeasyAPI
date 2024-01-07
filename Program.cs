@@ -4,7 +4,6 @@ using timeasy_api.src.Contexts;
 using timeasy_api.src.Core;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
-using NSwag;
 
 var builder = WebApplication.CreateBuilder();
 
@@ -15,7 +14,15 @@ builder.Services.AddFastEndpoints()
    .AddJWTBearerAuth(secretJwtKey)
    .AddAuthorization();
 
-
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowLocalhost3000",
+        builder => builder
+            .WithOrigins("http://localhost:3000")
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            .AllowCredentials());
+});
 builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
 builder.Services.RegisterDependencies();
 
@@ -38,6 +45,8 @@ builder.Services.AddDbContext<TimeasyDbContext>(options =>
 );
 
 var app = builder.Build();
+
+app.UseCors("AllowLocalhost3000");
 
 app.UseFastEndpoints(c => c.Serializer.Options.ReferenceHandler = ReferenceHandler.IgnoreCycles)
     .UseAuthentication()
