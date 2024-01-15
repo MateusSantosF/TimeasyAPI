@@ -10,6 +10,9 @@ public class Mapper : Mapper<Request, PagedResult<Response>, PagedResult<Course>
     public override PagedResult<Response> FromEntity(PagedResult<Course> e) => new()
     {
         CurrentPage = e.CurrentPage,
+        RowCount = e.RowCount,
+        PageCount = e.PageCount,
+        PageSize = e.PageSize,
         Results = e.Results.Select((Course course) =>
         {
             return new Response()

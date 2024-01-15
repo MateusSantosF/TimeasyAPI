@@ -25,11 +25,12 @@ public static class ExtensionPagedResult
     public static async Task<PagedResult<T>> GetPagedAsync<T>(this IQueryable<T> query,
                                    int page, int pageSize) where T : class
     {
+        var rowCount = await query.CountAsync();
         var result = new PagedResult<T>
         {
             CurrentPage = page,
             PageSize = pageSize,
-            RowCount = await query.CountAsync()
+            RowCount = rowCount
         };
 
         var pageCount = (double)result.RowCount / pageSize;

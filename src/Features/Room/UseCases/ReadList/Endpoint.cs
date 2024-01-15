@@ -19,8 +19,10 @@ public class Endpoint : Endpoint<Request, PagedResult<Response>, Mapper>
 
         try
         {
-            Expression<Func<Room, bool>> query = course => course.InstituteId.Equals(req.InstituteId);
-            var result = await Repository.GetPagedAsync(req.Page, req.PageSize, query);
+            Expression<Func<Room, bool>> query = room => room.InstituteId.Equals(req.InstituteId)
+            && (string.IsNullOrWhiteSpace(req.Query) || room.Name.Contains(req.Query));
+
+            var result = await Repository.GetPagedAsync(req.Page, req.PageSize, query, orderBy: room => room.Name, includeProperties: room => room.Type);
 
             await SendOkAsync(Map.FromEntity(result), ct);
         }

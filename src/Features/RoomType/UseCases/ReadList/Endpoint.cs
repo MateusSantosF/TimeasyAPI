@@ -1,5 +1,6 @@
 
 using System.Linq.Expressions;
+using Microsoft.IdentityModel.Tokens;
 using timeasy_api.src.Core.Pagination;
 using timeasy_api.src.Repository;
 
@@ -19,7 +20,8 @@ public class Endpoint : Endpoint<Request, PagedResult<Response>, Mapper>
 
         try
         {
-            Expression<Func<RoomType, bool>> query = course => course.InstituteId.Equals(req.InstituteId);
+            Expression<Func<RoomType, bool>> query = roomType => roomType.InstituteId.Equals(req.InstituteId)
+            && (string.IsNullOrWhiteSpace(req.Query) || roomType.Name.Contains(req.Query));
 
             var targetRoomType = await Repository.GetPagedAsync(req.Page, req.PageSize, query);
 

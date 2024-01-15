@@ -4,7 +4,10 @@ using timeasy_api.src.Core.Pagination;
 namespace timeasy_api.src.Repository;
 public interface IGenericRepository<T> where T : BaseEntity
 {
-    public Task<PagedResult<T>> GetPagedAsync(int page, int pageSize, Expression<Func<T, bool>>? searchCondition);
+    public Task<PagedResult<T>> GetPagedAsync(
+           int page, int pageSize, Expression<Func<T, bool>>? searchCondition = null,
+           Expression<Func<T, object>>? orderBy = null,
+           params Expression<Func<T, object>>[] includeProperties);
     public Task<PagedResult<T>> GetPagedAsync(int page, int pageSize);
     public Task<List<T>> GetAllAsync();
     public Task<List<T>> GetAllAsync(Expression<Func<T, bool>> searchCondition);

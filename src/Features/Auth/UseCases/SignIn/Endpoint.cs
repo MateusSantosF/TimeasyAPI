@@ -16,7 +16,7 @@ public class Endpoint : Endpoint<Request, Response, Mapper>
 
     public override void Configure()
     {
-        Post("user/signin");
+        Post("auth/signin");
         AllowAnonymous();
     }
 

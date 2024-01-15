@@ -40,13 +40,24 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
 
     }
 
-    public async Task<PagedResult<T>> GetPagedAsync(int page, int pageSize, Expression<Func<T, bool>>? searchCondition = null)
+    public async Task<PagedResult<T>> GetPagedAsync(
+        int page, int pageSize, Expression<Func<T, bool>>? searchCondition = null,
+        Expression<Func<T, object>>? orderBy = null,
+        params Expression<Func<T, object>>[] includeProperties)
     {
         IQueryable<T> query = _entitie.AsNoTracking().Where(e => e.Active == true);
 
         if (searchCondition != null)
         {
             query = query.Where(searchCondition);
+        }
+        if (includeProperties != null)
+        {
+            query = includeProperties.Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
+        }
+        if (orderBy != null)
+        {
+            query = query.OrderBy(orderBy);
         }
 
         return await query.GetPagedAsync(page, pageSize);

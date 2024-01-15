@@ -1,6 +1,3 @@
-
-
-
 using timeasy_api.src.Core.Pagination;
 
 namespace timeasy_api.src.Modules.subject.UseCases.ReadList;
@@ -11,6 +8,9 @@ public class Mapper : Mapper<Request, PagedResult<Response>, PagedResult<Subject
     public override PagedResult<Response> FromEntity(PagedResult<Subject> e) => new()
     {
         CurrentPage = e.CurrentPage,
+        RowCount = e.RowCount,
+        PageCount = e.PageCount,
+        PageSize = e.PageSize,
         Results = e.Results.Select((Subject e) =>
             new Response()
             {

@@ -7,6 +7,7 @@ public class Request : PagedRequest
 {
     [FromClaim("InstituteId", isRequired: true)]
     public Guid InstituteId { get; set; }
+    public string? Query { get; set; }
 }
 
 public class Validator : Validator<Request>
@@ -26,4 +27,5 @@ public class Response
     public string? Block { get; set; }
     public int Capacity { get; set; }
     public Guid RoomTypeId { get; set; }
+    public string RoomType { get; set; }
 }

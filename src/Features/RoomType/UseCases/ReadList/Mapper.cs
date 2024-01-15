@@ -8,6 +8,9 @@ public class Mapper : Mapper<Request, PagedResult<Response>, PagedResult<RoomTyp
 {
     public override PagedResult<Response> FromEntity(PagedResult<RoomType> e) => new()
     {
+        RowCount = e.RowCount,
+        PageCount = e.PageCount,
+        PageSize = e.PageSize,
         CurrentPage = e.CurrentPage,
         Results = e.Results.Select((RoomType e) =>
             new Response()

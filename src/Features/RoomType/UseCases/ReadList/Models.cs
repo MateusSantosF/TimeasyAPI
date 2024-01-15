@@ -1,6 +1,3 @@
-
-
-using System.Linq.Expressions;
 using timeasy_api.src.Core.Pagination;
 
 namespace timeasy_api.src.Modules.roomtype.UseCases.ReadList;
@@ -8,6 +5,7 @@ public class Request : PagedRequest
 {
     [FromClaim("InstituteId", isRequired: true)]
     public Guid InstituteId { get; set; }
+    public string? Query { get; set; }
 }
 
 public class Response
